@@ -40,7 +40,6 @@ RubAbstractTextArea class >> installPharoIM [
 
 { #category : #'*PharoIM-Core' }
 RubAbstractTextArea >> keyDown: anEvent [
-
 	"Handle a keystroke event."
 
 	editing = true ifTrue: [ ^ self ].
@@ -93,7 +92,7 @@ RubAbstractTextArea >> keyboardFocusChange: aBoolean [
 RubAbstractTextArea >> textEdition: aTextEditionEvent [
 
 	self editor zapSelectionWith: aTextEditionEvent text.
-	editing := true.
+	editing := true
 ]
 
 { #category : #'*PharoIM-Core' }

@@ -3,11 +3,11 @@ Extension { #name : #Morph }
 { #category : #'*PharoIM-Core' }
 Morph >> handleTextEditionEvent: anEvent [
 	"System level event handling."
-	
-	anEvent wasHandled ifTrue:[^self].
-	(self handlesTextEditionEvent: anEvent) ifTrue:[
+
+	anEvent wasHandled ifTrue: [ ^ self ].
+	(self handlesTextEditionEvent: anEvent) ifTrue: [ 
 		anEvent wasHandled: true.
-		self textEdition: anEvent]
+		self textEdition: anEvent ]
 ]
 
 { #category : #'*PharoIM-Core' }
