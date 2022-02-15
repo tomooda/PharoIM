@@ -1,7 +1,7 @@
 Extension { #name : #MorphicEventDispatcher }
 
 { #category : #'*PharoIM-Core' }
-MorphicEventDispatcher >> handleTextEditionEvent: aTextEditionEvent [ 
+MorphicEventDispatcher >> handleTextEditionEvent: aTextEditionEvent [
 	^ self dispatchDefault: aTextEditionEvent with: morph
 ]
 
