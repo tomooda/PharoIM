@@ -69,21 +69,24 @@ RubAbstractTextArea >> keyStroke: anEvent [
 
 { #category : #'*PharoIM-Core' }
 RubAbstractTextArea >> keyboardFocusChange: aBoolean [
+
 	aBoolean
-		ifTrue: [
+		ifTrue: [ 
 			self hasFocus: true.
-			self requestTextEditingAt: (self cursor positionInWorld
-				corner: self cursor positionInWorld).
+			editing := false.
+			self editor unselect.
+			self requestTextEditingAt:
+				(self cursor positionInWorld corner: self cursor positionInWorld).
 			self showOverEditableTextCursor ]
 		ifFalse: [ 
 			self hasFocus: false.
 			self requestStopTextEditing.
-			self requestTextEditingAt: (self cursor positionInWorld
-				corner: self cursor positionInWorld).
+			editing = true ifTrue: [ 
+				self editor unselect.
+				editing := false ].
 			self hideOverEditableTextCursor ].
 	super keyboardFocusChange: aBoolean.
-	self focusChanged.
-
+	self focusChanged
 ]
 
 { #category : #'*PharoIM-Core' }

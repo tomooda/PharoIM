@@ -21,14 +21,6 @@ Morph >> handleTextInputEvent: anEvent [
 ]
 
 { #category : #'*PharoIM-Core' }
-Morph >> handleUnknownEvent: anEvent [
-	"An event of an unknown type was sent to the receiver. What shall we do?!"
-	self inform: 'Unknown event: ', anEvent printString. 
-	anEvent printString displayAt: 0@0.
-	anEvent wasHandled: true.
-]
-
-{ #category : #'*PharoIM-Core' }
 Morph >> handlesTextEditionEvent: evt [
 	"Do I want to receive text edition events?" 
 
