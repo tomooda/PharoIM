@@ -21,7 +21,7 @@ HandMorph >> handleEvent: anEvent [
 	"Notify listeners"
 	self sendListenEvent: evt to: self eventListeners.
 
-	evt isTextEditionEvent ifTrue: [
+	(evt isTextEditionEvent or: [evt isTextInputEvent]) ifTrue: [
 		^ self sendEvent: evt focus: keyboardFocus  ].
 
 	evt isWindowEvent ifTrue: [
