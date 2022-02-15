@@ -91,8 +91,11 @@ RubAbstractTextArea >> keyboardFocusChange: aBoolean [
 { #category : #'*PharoIM-Core' }
 RubAbstractTextArea >> textEdition: aTextEditionEvent [
 
-	self editor zapSelectionWith: aTextEditionEvent text.
-	editing := true
+	aTextEditionEvent text
+		ifNotEmpty: [ :editText | 
+			self editor zapSelectionWith: editText.
+			editing := true ]
+		ifEmpty: [ editing := false ]
 ]
 
 { #category : #'*PharoIM-Core' }
