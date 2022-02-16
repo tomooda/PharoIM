@@ -95,7 +95,10 @@ RubAbstractTextArea >> textEdition: aTextEditionEvent [
 		ifNotEmpty: [ :editText | 
 			self editor zapSelectionWith: editText.
 			editing := true ]
-		ifEmpty: [ editing := false ]
+		ifEmpty: [ 
+			editing = true ifTrue: [ 
+				self editor zapSelectionWith: ''.
+				editing := false ] ]
 ]
 
 { #category : #'*PharoIM-Core' }
