@@ -7,6 +7,13 @@ RubAbstractTextArea >> editing [
 ]
 
 { #category : #'*PharoIM-Core' }
+RubAbstractTextArea >> handleKeyDown: anEvent [
+
+	editing = true ifTrue: [ ^ self ].
+	^ super handleKeyDown: anEvent
+]
+
+{ #category : #'*PharoIM-Core' }
 RubAbstractTextArea >> handlesTextEditionEvent: anEvent [
 
 	^ true
@@ -39,30 +46,17 @@ RubAbstractTextArea class >> installPharoIM [
 ]
 
 { #category : #'*PharoIM-Core' }
-RubAbstractTextArea >> keyDown: anEvent [
-	"Handle a keystroke event."
-
-	editing = true ifTrue: [ ^ self ].
-	anEvent key = KeyboardKey enter ifTrue: [ 
-		self handleReturnKey ifTrue: [ ^ self ] ].
-
-	anEvent hand anyButtonPressed ifTrue: [ ^ self ].
-	self scrollPane ifNotNil: [ :sp | 
-		(sp scrollByKeyboard: anEvent) ifTrue: [ ^ self ] ].
-	anEvent isUserInterrupt ifTrue: [ ^ self ].
-	self handleEdit: [ self editor keyDown: anEvent ]
-]
-
-{ #category : #'*PharoIM-Core' }
 RubAbstractTextArea >> keyStroke: anEvent [
 
 	"Handle a keystroke event."
 
 	anEvent hand anyButtonPressed ifTrue: [ ^ self ].
 	self handleEdit: [ 
-		editing = true ifTrue: [ 
-			editing := false ].
-		self editor keystroke: anEvent ].
+		editing = true
+			ifTrue: [ 
+				editing := false.
+				self editor unselect ]
+			ifFalse: [ self editor keystroke: anEvent ] ].
 	self scrollSelectionIntoView: nil
 ]
 
