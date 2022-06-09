@@ -16,9 +16,8 @@ OSWindowMorphicEventHandler >> visitTextEditingEvent: anEvent [
 
 { #category : #'*PharoIM-Core' }
 OSWindowMorphicEventHandler >> visitTextInputEvent: anEvent [
-
 	anEvent text ifNil: [ ^ nil ].
-	anEvent text size = 1
+	(anEvent text size = 1 and: [ anEvent text first codePoint < 128 ])
 		ifTrue: [ 
 			| char mods |
 			char := anEvent text first.
