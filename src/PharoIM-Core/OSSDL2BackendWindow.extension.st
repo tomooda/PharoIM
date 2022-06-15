@@ -4,8 +4,10 @@ Extension { #name : #OSSDL2BackendWindow }
 OSSDL2BackendWindow >> startTextInputAtRectangle: aRectangle [
 
 	"See https://wiki.libsdl.org/SDL_StartTextInput"
-	sdl2Window setTextInputRectangle: aRectangle asSDLRect.
-	sdl2Window startTextInput
+
+	sdl2Window
+		startTextInput;
+		setTextInputRectangle: aRectangle asSDLRect
 ]
 
 { #category : #'*PharoIM-Core' }
